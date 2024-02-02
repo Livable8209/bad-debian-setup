@@ -20,7 +20,7 @@ apt -y update
 apt -y upgrade
 
 # Install dependencies lol
-apt -y install build-essential gpg
+apt -y install build-essential gpg micro neofetch
 
 # Install eza
 sudo mkdir -p /etc/apt/keyrings
@@ -30,4 +30,14 @@ sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.lis
 sudo apt update
 sudo apt install -y eza
 
-# make alias file and push aliases into the file
+# make alias file and push aliases into file
+echo 'pushing aliases'
+printf "alias ls='eza'\nalias ll='eza -la'\nexport EDITOR='micro'\nneofetch\n" >> .bash_aliases
+
+# install rust and bore
+echo 'installing rust and bore'
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# shellcheck disable=SC1091
+source "$HOME/.cargo/env"
+cargo install bore-cli

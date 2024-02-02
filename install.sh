@@ -2,9 +2,13 @@
 if [ "$(id -u)" != 0 ]; then
    echo "sudo perms are required to edit and restart logind, asking for perms"
    sudo "$0" "$@"
-   exit1
+   exit 0
 fi
 
+if [ "$(id -u)" != 0 ]; then
+   echo "sudo perms were not granted, exiting..."
+   exit 1
+fi
 
 echo "sudo perms got, running."
 

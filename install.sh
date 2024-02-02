@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
-
-if [[ $EUID -ne 0 ]]; then
-    echo "sudo perms are required to edit and restart logind, exiting..."
-    exit 1
+#!/bin/bash
+if [ "$(id -u)" != 0 ]; then
+   echo "sudo perms are required to edit and restart logind, exiting..."
+   sudo "$0" "$@"
+   exit1
 fi
+
 
 echo "sudo perms got, running."
 
@@ -20,7 +21,7 @@ apt -y update
 apt -y upgrade
 
 # Install dependencies lol
-apt -y install build-essential gpg micro neofetch
+apt -y install build-essential gpg micro neofetch curl
 
 # Install eza
 sudo mkdir -p /etc/apt/keyrings

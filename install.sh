@@ -38,6 +38,7 @@ sudo apt install -y eza
 # make alias file and push aliases into file
 echo 'pushing aliases'
 printf "alias ls='eza'\nalias ll='eza -la'\nexport EDITOR='micro'\nneofetch\n" >> .bash_aliases
+source .bashrc
 
 # install rust and bore
 echo 'installing rust and bore'

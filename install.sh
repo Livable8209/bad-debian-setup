@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$(id -u)" != 0 ]; then
-   echo "sudo perms are required to edit and restart logind, exiting..."
+   echo "sudo perms are required to edit and restart logind, asking for perms"
    sudo "$0" "$@"
    exit1
 fi
